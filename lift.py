@@ -52,14 +52,14 @@ class Lift:
     def go_down(self, floor):
         """Iterates trough the floors and sets the self.current_floor to floor"""
 
-        for f in range(self.current_floor, floor + 1, -1):
+        for f in range(self.current_floor, floor - 1, -1):
             print(f"Floor {f}")
             time.sleep(1)
 
         self.current_floor = floor
 
     def door(self):
-        """Opens and closing the doors"""
+        """Opens and closing the doors."""
 
         commands = {"open": ">", "clos": "<"}
         current_command = next(self.door_command)
