@@ -36,30 +36,27 @@ class Lift:
         self.door()
         process.start()
         user_floor = self.get_user_floor()
-        self.go_up(user_floor)
+        self.run_lift(user_floor)
         self.door()
         process.terminate()
-
 
     def go_up(self, floor):
         """Iterates trough the floors and sets the self.current_floor to floor"""
 
-        for f in range(self._ground_floor, floor):
+        for f in range(self.current_floor, floor + 1):
             print(f"Floor {f}")
             time.sleep(1)
 
         self.current_floor = floor
-        print(self.current_floor)
 
     def go_down(self, floor):
         """Iterates trough the floors and sets the self.current_floor to floor"""
 
-        for f in range(floor, self._ground_floor, -1):
+        for f in range(self.current_floor, floor + 1, -1):
             print(f"Floor {f}")
             time.sleep(1)
 
         self.current_floor = floor
-        print(self.current_floor)
 
     def door(self):
         """Opens and closing the doors"""
@@ -79,6 +76,8 @@ class Lift:
             self.go_up(floor)
         elif self.current_floor > floor:
             self.go_down(floor)
+        else:
+            print("You are on the same floor")
 
     def __str__(self):
         print(f"This is the lift with current floor: {self.current_floor}")
